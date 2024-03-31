@@ -21,7 +21,8 @@ describe('Transactions routes', () => {
   })
 
   beforeEach(() => {
-    execSync('npm run knex migrate:test')
+    execSync('npm run knex -- migrate:rollback --all')
+    execSync('npm run knex -- migrate:latest')
   })
 
   test('user consegue criar uma nova transacao', async () => {
