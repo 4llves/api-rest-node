@@ -1,5 +1,14 @@
-import { expect, test, beforeAll, afterAll, describe, it } from 'vitest'
+import {
+  expect,
+  test,
+  beforeAll,
+  afterAll,
+  describe,
+  it,
+  beforeEach,
+} from 'vitest'
 import req from 'supertest'
+import { execSync } from 'node:child_process'
 import { app } from '../src/app'
 
 describe('Transactions routes', () => {
@@ -9,6 +18,10 @@ describe('Transactions routes', () => {
 
   afterAll(async () => {
     await app.close() // fechar a aplicacao / remover ela da memoria
+  })
+
+  beforeEach(() => {
+    execSync('npm run knex migrate:test')
   })
 
   test('user consegue criar uma nova transacao', async () => {
