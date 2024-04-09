@@ -44,7 +44,7 @@ describe('Transactions routes', () => {
         type: 'credit',
       })
 
-    const cookies = createTransactionResponse.get('Set-Cookie')
+    const cookies = createTransactionResponse.get('Set-Cookie') || []
 
     const listTransactionsResponse = await req(app.server)
       .get('/transactions')
